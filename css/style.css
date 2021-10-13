@@ -38,18 +38,28 @@
   --color-gray-darkest: #7b7b7b;
   --color-gray-dark: #7e7e7e;
   --color-gray: #9e9e9e;
-  --color-gray-light: #bdbdbd;
+  --color-gray-light: #606060;
   --color-gray-lighter: #d1d1d1;
   --color-gray-lightest: #dcdcdc;
   --color-text-black: #000000;
   --color-text-white: #ffffff;
+  --color-text-blue: #0C0C5B;
   --color-background-main: #ffffff;
-  --color-accent: #fd7d36;
-  --color-accent-hover: #ff9e68;
-  --color-accent-active: #ff7528;
+  --color-accent: #272794;
+  --color-accent-hover: #4242A2;
+  --color-accent-active: #191977;
   --color-warning: #fd3636;
   --color-warning-hover: #ff8484;
 }
+
+/* As hex codes */
+
+.color-primary-0 { color: #272794 }	/* Main Primary color */
+.color-primary-1 { color: #6262B7 }
+.color-primary-2 { color: #4242A2 }
+.color-primary-3 { color: #191977 }
+.color-primary-4 { color: #0C0C5B }
+
 
 html,
 body {
@@ -212,7 +222,7 @@ input[type="number"] {
   margin: 0;
   margin-bottom: 22px;
 
-  color: var(--color-text-white);
+  color: var(--color-text-blue);
   text-align: center;
 }
 

@@ -1,5 +1,6 @@
 let resultContainer = document.querySelector(".counter__result");
 let btnResult = document.querySelector(".form__submit-button");
+let btnReset = document.querySelector('.form__reset-button')
 let caloriesNorm = document.getElementById("calories-norm");
 let caloriesMinimal = document.getElementById("calories-minimal");
 let caloriesMaximal = document.getElementById("calories-maximal");
@@ -8,7 +9,7 @@ let heightInput = document.getElementById("height");
 let weightInput = document.getElementById("weight");
 
 let genderInput = Array.from(document.querySelectorAll("input[data-gender]"))
-let genderArr = []
+let genderArr = ['male']
 genderInput.forEach(radio => radio.addEventListener('change', function() {
   genderArr = 
       genderInput.filter(ii => ii.checked) // Use Array.filter to remove unchecked checkboxes.
@@ -17,8 +18,16 @@ genderInput.forEach(radio => radio.addEventListener('change', function() {
     //console.log(genderArr)
 }))
 
+let paramInput = Array.from(document.querySelectorAll("input[data-param]"))
+let paramArr = []
+paramInput.forEach(p => p.addEventListener('change', function() {
+  btnResult.disabled = false;
+  btnReset.disabled = false;
+}))
+
+
 let activityInput = Array.from(document.querySelectorAll("input[data-active]"))
-let enabledSettings = []
+let enabledSettings = ['min']
 activityInput.forEach(input => input.addEventListener('change', function() {
   enabledSettings = 
       activityInput.filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
@@ -34,12 +43,6 @@ let q = {
   high: 1.725,
   max: 1.9,
 };
-
-// if (ageInput.value > 0 && heightInput.value > 0 && weightInput.value > 0) {
-//   btnResult.removeAttribute("disabled");
-// }
-
-btnResult.removeAttribute("disabled");
 
 function showContainer(event) {
   event.preventDefault();
@@ -66,11 +69,15 @@ function showContainer(event) {
   caloriesNorm.textContent = Math.round(norm)
   caloriesMinimal.textContent = Math.round(minimal)
   caloriesMaximal.textContent = Math.round(maximal)
-
-  //TODO: 
-  // 1. Кнопка «Рассчитать» - Становится активна, когда хотя бы одно числовое поле заполнено
-  // 2. Кнопка «Рассчитать» - повторный клик по кнопке обновляет расчёты, выводится актуальная информация
-  // 3. Кнопка «Очистить поля и расчёт» -  При клике все элементы приложения сбрасываются до состояния по умолчанию: числовые поля очищаются (плейсхолдер 0), пол становится мужской, физическая активность «минимальная», блок с информацией о калориях скрывается.
 }
 
 btnResult.addEventListener("click", showContainer);
+
+function resetForm () {
+  document.getElementById("form").reset()
+  btnResult.disabled = true;
+  btnReset.disabled = true;
+  resultContainer.classList.add("counter__result--hidden");
+} 
+
+btnReset.addEventListener("click", resetForm)
